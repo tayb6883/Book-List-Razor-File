@@ -1,13 +1,15 @@
 ﻿@page
-@model BookListRazor.Pages.BookList.CreateModel
+@model BookListRazor.Pages.BookList.EditModel
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
+
 <br />
-<h2 class="text-info">Create New Book</h2>
+<h2 class="text-info">Edit Book</h2>
 <div class="container border" style="padding:30px">
     <form method="post">
+        <input type="hidden" asp-for="Book.Id"/>
         <div class="text-danger" asp-validation-summary="ModelOnly"> </div>
         <div class="form-group row">
             <div class="col-3">
@@ -43,7 +45,7 @@
 
         <div class="form-group row">
             <div class="col-3 offset-3">
-                <input type="submit" name="Craete" value="Create" class="btn btn-primary form-control" />
+                <input type="submit" name="Craete" value="Update" class="btn btn-primary form-control" />
             </div>
             <div class=" col-3">
                 <a asp-page="Index" class="btn btn-success form-control">Back to List</a>
@@ -54,7 +56,7 @@
 </div>
 
 @*//for client side validation
-user wont go to client side if validation is applied via asp tag helper as below*@
+    user wont go to client side if validation is applied via asp tag helper as below*@
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />
 }
