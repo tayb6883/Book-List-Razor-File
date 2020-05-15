@@ -18,10 +18,29 @@ namespace BookListRazor.Pages.BookList
             _db = db;
         }
 
-        public  IEnumerable<Book> Books { get; set; }
+        public IEnumerable<Book> Books { get; set; }
         public async Task OnGet()
         {
             Books = await _db.Book.ToListAsync();
         }
+        public async Task<IActionResult> OnPostDelete(int id)
+        {
+            Book book = await _db.Book.FindAsync(id);
+            if (book != null)
+            {
+                //remove the book and save changes.
+                _db.Book.Remove(book);
+                //save changes 
+                await _db.SaveChangesAsync();
+                return RedirectToPage("index");
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
+
+
     }
 }
